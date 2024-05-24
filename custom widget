@@ -1,0 +1,25 @@
+
+PreferredSizeWidget customAppbar({
+  //er vitor ja dibo esb paramitar
+  String? title,
+  List<Widget>?actions,
+  Widget ?isLeading,
+  required BuildContext context
+}){ 
+//appbar hosse PreferredSizeWidget type er ekta widget,,ar ekhane amra bole dilam je,,ei type er kono ekta widget call back korbe
+//function er name start hoi small letter e,,ekhna customAppbar ekta function
+  
+  return AppBar(
+    centerTitle: true,
+    automaticallyImplyLeading: false,
+    leading: isLeading !=null? isLeading:IconButton(onPressed: (){
+      Navigator.pop(context);
+    }, icon: const Icon(Icons.arrow_back)),
+    //leading er eikhane bola hoyeche je,,jodi isLeading null hoi tahole jeta normal ase ,seta show korbe,
+    //ar ami jodi diye dei tahole seta show korbe,,
+    title: title!=null ?Text(title):null,
+    actions:actions,
+  
+  );
+
+}
