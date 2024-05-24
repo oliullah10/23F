@@ -1,0 +1,46 @@
+
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({super.key,
+   required this.hintText,
+   this.keyboardType,
+    this.sequre, this.sufixIcon,
+   
+   });
+  final String hintText;
+  final TextInputType? keyboardType;
+  final bool? sequre;
+  final Widget? sufixIcon;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+                keyboardType: keyboardType,
+                obscureText:sequre?? false ,//eta  bojai sequre jodi null hoi tahole eta false hobe ,,eta ekta bollian type er widget eta use kora hoi ,eta sequre kina seta jana er jonno
+
+
+                style: TextStyle(
+                fontWeight: FontWeight.w500
+                ),
+                decoration: InputDecoration(
+                  hintText: hintText,
+                  filled: true,//eta diye from backgroun ki fill naki seta bujai
+                  fillColor: AppColors.fileBackgroundColor,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide(
+                      color: Color(0xff1F41BB),
+                    )
+                  ),
+                  //prefixIcon: Icon(Icons.person)
+                  suffixIcon: sufixIcon,
+                ),
+
+             
+
+
+
+
+
+                )
+              ;
+  }
+}
