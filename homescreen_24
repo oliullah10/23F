@@ -1,0 +1,289 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:lecture23/global_widget/custom_widget.dart';
+import 'package:lecture23/utilis/colors.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  List<String> slidrrImages=[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdEjHxi_VjebggRwCnt2uLiqlkIKWtm4dlqPSoMPkz9g&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyKn-XoV7e11uhnhZQjcpxT--LlZ9jwvZzBvawjy2E7A&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRJwAceDKPSQiGZ7drVKg1TCZj8RJM9vu3ZU2La5nLkB3lPBDMcSNrP536nMVKzf8Dn4&usqp=CAU"
+  ];
+  List<Map<String,String>> catogories=[
+    {
+      'icon':'assets/images/1.png'
+    },
+    {
+      'icon':'assets/images/2.png'
+    },
+    {
+      'icon':'assets/images/3.png'
+    },
+    {
+      'icon':'assets/images/4.png'
+    },
+    {
+      'icon':'assets/images/5.png'
+    },
+  ] ;
+  List<Map<String,String>> product=[
+  {
+    'image':'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg',
+    'name':'Redmi Note 4',
+    'price':'\$480',
+  },
+  {
+    'image':'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg',
+    'name':'Apple watch 6',
+    'price':'\$100',
+  },
+  {
+    'image':'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg',
+    'name':'Casino watch',
+    'price':'\$80',
+  },
+  {
+    'image':'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg',
+    'name':'Redmi Note 4',
+    'price':'\$480',
+  },
+  {
+    'image':'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg',
+    'name':'Apple',
+    'price':'\$480',
+  },
+  {
+    'image':'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg',
+    'name':'Redmi Note 4',
+    'price':'\$70',
+  },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: customAppbar(context: context,
+        
+        isLeading: const Icon(Icons.menu),
+        actions: [const Icon(Icons.search)]
+      ),
+      body:  
+      SingleChildScrollView(
+        child: Column(
+          children: [
+            //greetinges
+            const Text("Hi OliUllah",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+            ),
+            ),
+            Text("Let's start shopping",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              color: Colors.black.withOpacity(0.5),
+            ),
+            ),
+      
+            Center(
+              child: Container(
+                height: 150,
+                margin: EdgeInsets.only(
+                  top: 20,
+                  bottom: 20,
+                ),
+                child: CarouselSlider.builder(
+                  
+                  itemCount: 2,
+                 itemBuilder:(context, index, realIndex) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      image: DecorationImage(
+                        image: NetworkImage(slidrrImages[index],),
+                          fit: BoxFit.cover,
+                        )
+                    ),
+                  );
+                   
+                 },
+                 options: CarouselOptions(
+                  autoPlay: true,
+                  autoPlayCurve: Curves.easeIn,
+                  enlargeCenterPage: true
+                 )),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(28.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                    Text("Top Categories",style: 
+                    TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                    ),),
+                    TextButton(onPressed: (){}, child: Text("See all",style: TextStyle(
+                      color: AppColors.primaryColor
+                    ),))
+              ],),
+              
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+      
+            //catagories
+            SizedBox(
+              height: 62,
+              
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: 5,
+                primary: false,
+            
+                scrollDirection: Axis.horizontal,//eta dile height bole dite hoi,,tarjonno amra ekhane sizedbox er vitor esb rakhchi,
+                
+                itemBuilder: (context,index){
+                  return Container(
+                    margin: EdgeInsets.only(
+                      left: 10.0,
+                    ),
+                    width: 64,
+                    decoration: BoxDecoration(
+                      color: Color(0xffF2F2F2),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: Color(0xffD8D3D3)
+                      )
+                    ),
+                    child: Image.asset(catogories[index]['icon']!),
+                  );
+            
+                }),
+            ),
+      
+            const SizedBox(
+              height: 20.0,
+            ),
+              const Padding(
+                padding: EdgeInsets.only(left: 15.0),
+                child: Row(
+                  children: [
+                    Text("Recent Product",textAlign: TextAlign.left,style: 
+                         TextStyle(
+                     fontWeight: FontWeight.bold,
+                     fontSize: 20.0,
+                         ),),
+                  ],
+                ),
+                
+              ),
+              SizedBox(
+                height: 15.0,
+              ),
+              
+                //GridView.builder eta amara use kori,,,amra jani na je amader koto product ase,,amra ei data fierbase theke nibo
+              
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,//row teh 2 ta kore show korbe,,
+                    crossAxisSpacing: 15.0,
+                    mainAxisSpacing: 15.0,
+                    childAspectRatio: .8//eta bydefult 1 deua theke,,er maddome amra size ta ar ekto bariye nilam
+                    ), 
+                    itemCount: 6,
+                    shrinkWrap: true,
+                    primary: true,
+              
+                    
+                    itemBuilder: (context,index){
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xffD8D3D3),
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,//ei colum er sob kishu ekhn left side theke start hobe
+                          children: [
+                            Container(
+                              height:290,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+
+                                image: DecorationImage(image: NetworkImage(product[index]['image']!))//ekhane amra oi list er vitor kora image ta ke mention diyechi,,
+
+                              /*
+                                image: const DecorationImage(image: NetworkImage(
+                                  "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_640.jpg"
+                                ),
+                                fit: BoxFit.cover
+                                )
+                              */
+
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,//icon ta er cross axis alignment endt theke hobe
+                                children: [
+                                  IconButton(onPressed: (){
+
+                                  }, 
+                                  icon: Icon(
+                                    Icons.favorite,
+                                    color:Colors.yellow.withOpacity(.5)))
+                                ],
+                              ),
+                            
+                            ),
+                             Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  
+                              Text(product[index]['name']!,//ekhane kothau const use korle vhul hobe ba error asbe
+                              style: TextStyle(
+
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20
+                              ),),
+                              SizedBox(
+                                height: 5.0,
+                              ),
+                              Text(product[index]['price']! ?? '10',//jodi price na deua hoi,,defult price 10 dekhabe 
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20.0
+                              ),)
+                                ],
+                              ),
+                            )
+
+                          ],
+                        ),
+                      );
+                    }),
+              )
+             
+          
+          ],
+        ),
+      ),
+    );
+  }
+}
