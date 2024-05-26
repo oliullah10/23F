@@ -1,0 +1,47 @@
+//build context er upor e dite hobe,,
+List<String> slidrrImages=[
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdEjHxi_VjebggRwCnt2uLiqlkIKWtm4dlqPSoMPkz9g&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyKn-XoV7e11uhnhZQjcpxT--LlZ9jwvZzBvawjy2E7A&s",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYRJwAceDKPSQiGZ7drVKg1TCZj8RJM9vu3ZU2La5nLkB3lPBDMcSNrP536nMVKzf8Dn4&usqp=CAU"
+    ];
+
+
+
+
+
+
+
+Column(
+            children: [
+                 Center(
+              child: Container(
+                height: 150,
+                width: 400.0,
+                margin: EdgeInsets.only(
+                  top: 20,
+                  bottom: 20,
+                ),
+                child: CarouselSlider.builder(
+                  
+                  itemCount: 3,
+                 itemBuilder:(context, index, realIndex) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      image: DecorationImage(
+                        image: NetworkImage(slidrrImages[index],),
+                          fit: BoxFit.cover,
+                        )
+                    ),
+                  );
+                   
+                 },
+                 options: CarouselOptions(
+                  autoPlay: true,
+                  autoPlayCurve: Curves.easeIn,
+                  enlargeCenterPage: true
+                 )),
+              ),
+            ),
+            ],
+          )
